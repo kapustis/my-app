@@ -24,11 +24,11 @@ class Car extends React.Component {
     render() {
         return (
             <div className="Car">
-                <h1 style={{color: 'rgba(52,132,152,1)'}}>Hello, {this.props.name}</h1>
-                <p style={{color:'#004d61'}}>Model : {this.props.model} </p>
-                {/*{this.props.children}*/}
-                <h2 style={{color:'#ff502f'}}>Сейчас {this.state.date.toLocaleTimeString()}.</h2>
-                <button>Click</button>
+                <h1>Hello, {this.props.name}</h1>
+                <p>Model : {this.props.model} </p>
+                <h2>Сейчас {this.state.date.toLocaleTimeString()}.</h2>
+                <button onClick={this.props.onChangeText}>Click</button>
+                {this.props.children}
             </div>
         );
     }

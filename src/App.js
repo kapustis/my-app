@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Car from "./Car/Car";
 
@@ -9,13 +9,18 @@ class App extends React.Component {
             {id: 1, name: 'Honda', model: 'NSX'},
             {id: 2, name: 'Toyota', model: 'AE86 Apex'},
             {id: 3, name: 'BMW', model: 'M3 E30'},
-        ]
+        ],
+        headText: 'Редактировать'
+    };
+    changeHeadText = (newText) => {
+        this.setState({headText: newText})
     };
 
     carItem() {
-        const Cars = this.state.cars;
-        return Cars.map((car) =>
-            <Car key={car.id} name={car.name} model={car.model}/>
+        return this.state.cars.map((car,index) =>
+            <Car key={car.id} name={car.name} model={car.model} onChangeText={() => this.changeHeadText(car.name)}>
+                <p>Индекс елемента :{index} и id:{car.id}</p>
+            </Car>
         );
     }
 
@@ -23,14 +28,18 @@ class App extends React.Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <p>Редактировать <code>src/App.js</code> сохраните, чтобы перезагрузить..</p>
-                    <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                        Учиться реагировать
-                    </a>
+                    <h1>{this.state.headText}</h1>
                 </header>
                 <div className='content'>
                     {this.carItem()}
+                    {/*{this.state.cars.map((car, index) => {*/}
+                    {/*        return (*/}
+                    {/*            <Car key={car.id} name={car.name} model={car.model} onChangeText={() => this.changeHeadText(car.name)}>*/}
+                    {/*            <p>Индекс елемента :{index} и id:{car.id}</p>*/}
+                    {/*            </Car>*/}
+                    {/*        )*/}
+                    {/*    })*/}
+                    {/*}*/}
                 </div>
             </div>
         );

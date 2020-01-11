@@ -3,3 +3,15 @@
     border-bottom: #282c34 solid 0.1em;
     border-top: #ff502f solid 0.2em;
 }
+
+.Car h1 {
+    color: rgba(52, 132, 152, 1)
+}
+
+.Car h2 {
+    color: #ff502f
+}
+
+.Car p {
+    color: #004d61
+}
