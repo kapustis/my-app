@@ -36,16 +36,7 @@ class App extends React.Component {
                     <button onClick={this.toggleShowCars}>Toggle cars</button>
                 </header>
                 <div className='content'>
-
                     { this.state.showCar ? this.carItem() : <p>no item</p>}
-                    {/*{this.state.cars.map((car, index) => {*/}
-                    {/*        return (*/}
-                    {/*            <Car key={car.id} name={car.name} model={car.model} onChangeText={() => this.changeHeadText(car.name)}>*/}
-                    {/*            <p>Индекс елемента :{index} и id:{car.id}</p>*/}
-                    {/*            </Car>*/}
-                    {/*        )*/}
-                    {/*    })*/}
-                    {/*}*/}
                 </div>
             </div>
         );

@@ -2,6 +2,14 @@
     text-align: center;
     border-bottom: #282c34 solid 0.1em;
     border-top: #ff502f solid 0.2em;
+    border-radius: 5em;
+    margin-bottom: 1em;
+    transition: border, box-shadow .5s;
+}
+.Car:hover{
+    background-color: rgba(128, 4, 127, 0.47);
+    box-shadow: 0 5px 15px 5px rgba(128, 4, 127, 0.25);
+    cursor: pointer;
 }
 
 .Car h1 {

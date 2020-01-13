@@ -38,6 +38,9 @@
 }
 
 .content{
-  padding: 5em;
+  width: 20em;
+  margin: auto;
+  padding: 2em;
   border: aqua solid 1px;
+  box-shadow: 0 5px 5px 5px #282c34;
 }
