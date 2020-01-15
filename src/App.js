@@ -2,15 +2,15 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.scss';
 import Car from "./Car/Car";
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 class App extends React.Component {
     constructor(props) {
-        console.log('constructor App');
         super(props);
         this.state = {
             cars: [
-                // {id: 1, name: 'Honda', model: 'NSX'},
-                // {id: 2, name: 'Toyota', model: 'AE86 Apex'},
+                {id: 1, name: 'Honda', model: 'NSX'},
+                {id: 2, name: 'Toyota', model: 'AE86 Apex'},
                 {id: 3, name: 'BMW', model: 'M3 E30'},
             ],
             showCar: false,
@@ -34,21 +34,15 @@ class App extends React.Component {
 
     carItem = () => {
         return this.state.cars.map((car, index) =>
+            <ErrorBoundary key={index}>
             <Car key={car.id} name={car.name} model={car.model}
                  onChangeText={() => this.changeHeadText(car.name)}
                  changeName={event => this.changeName(event.target.value, index)}>
                 <p>Индекс елемента :{index} и id:{car.id}</p>
             </Car>
+            </ErrorBoundary>
         );
     };
-
-    UNSAFE_componentWillMount() {
-        console.log('UNSAFE_componentWillMount App');
-    }
-
-    componentDidMount() {
-        console.log('componentDidMount App')
-    }
 
     render() {
         return (

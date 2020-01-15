@@ -3,26 +3,17 @@ import './Car.scss';
 
 class Car extends React.Component {
     constructor(props) {
+
         super(props);
         this.state = {date: new Date()};
     }
 
     componentDidMount() {
-        // this.timerID = setInterval(() => this.tick(), 1000);
+        this.timerID = setInterval(() => this.tick(), 1000);
     }
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log('shouldComponentUpdate Car', nextProps, nextState,nextContext)
-        return nextProps.model.trim() !== this.props.model.trim()
-    }
-    UNSAFE_componentWillUpdate(nextProps, nextState, nextContext) {
-        console.log('UNSAFE_componentWillUpdate Car',nextProps,nextState,nextContext)
-    }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('componentDidUpdate Car',prevProps,prevState,snapshot)
-    }
-
     componentWillUnmount() {
-        // clearInterval(this.timerID);
+        clearInterval(this.timerID);
+        console.log('componentWillUnmount Car')
     }
 
     tick() {
@@ -32,6 +23,9 @@ class Car extends React.Component {
     }
 
     render() {
+        if (Math.random() > 0.7) {
+            throw new Error('Random failed')
+        }
         return (
             <div className="Car">
                 <h1>Hello, {this.props.name}</h1>
