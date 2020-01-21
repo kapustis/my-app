@@ -3,6 +3,7 @@ import React from 'react';
 import './App.scss';
 import Car from "./Car/Car";
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import Counter from "./Conuter/Counter";
 
 class App extends React.Component {
     constructor(props) {
@@ -50,8 +51,10 @@ class App extends React.Component {
                 <header className="App-header">
                     <h1>{this.state.headText}</h1>
                     <button onClick={this.toggleShowCars}>Toggle cars</button>
+
                 </header>
                 <div className='content'>
+                    <Counter/>
                     {this.state.showCar ? this.carItem() : <p>no item</p>}
                 </div>
             </div>

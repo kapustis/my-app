@@ -23,9 +23,6 @@ class Car extends React.Component {
     }
 
     render() {
-        if (Math.random() > 0.7) {
-            throw new Error('Random failed')
-        }
         return (
             <div className="Car">
                 <h1>Hello, {this.props.name}</h1>
