@@ -1,5 +1,5 @@
 import React from "react";
-import Auxiliary from "../hoc/Auxiliary";
+// import Auxiliary from "../hoc/Auxiliary";
 
 class Counter extends React.Component{
     state = {
@@ -18,11 +18,11 @@ class Counter extends React.Component{
 
     render() {
         return(
-            <Auxiliary>
+            <>
                 <h2>Counter {this.state.counter}</h2>
                 <button onClick={this.incrementCounter}>+</button>
                 <button onClick={this.decrementCounter}>-</button>
-            </Auxiliary>
+            </>
         )
     }
 }
