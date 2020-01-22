@@ -22,6 +22,15 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+   button{
+     width: 20em;
+     height: auto;
+     border-radius: .5em;
+     border-top: #004d61 solid 0.25em;
+     border-left: #004d61 solid 0.25em;
+     border-bottom: #296115 solid 0.25em;
+     border-right: #1d6114 solid 0.25em;
+   }
 }
 
 .App-link {

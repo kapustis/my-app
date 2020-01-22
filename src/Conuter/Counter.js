@@ -1,13 +1,14 @@
 import React from "react";
-// import Auxiliary from "../hoc/Auxiliary";
 
 class Counter extends React.Component{
     state = {
         counter: 0
     };
     incrementCounter = () =>{
-        this.setState({
-            counter: this.state.counter + 1
+        this.setState((state)=>{
+            return{
+                counter: state.counter + 1
+            }
         })
     };
     decrementCounter = () => {

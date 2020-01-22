@@ -51,10 +51,9 @@ class App extends React.Component {
                 <header className="App-header">
                     <h1>{this.state.headText}</h1>
                     <button onClick={this.toggleShowCars}>Toggle cars</button>
-
+                    <Counter/>
                 </header>
                 <div className='content'>
-                    <Counter/>
                     {this.state.showCar ? this.carItem() : <p>no item</p>}
                 </div>
             </div>
