@@ -1,9 +1,9 @@
 import React from "react";
-import './Car.scss';
+import style from './Car.module.scss';
+import withClass from  '../hoc/withClass'
 
 class Car extends React.Component {
     constructor(props) {
-
         super(props);
         this.state = {date: new Date()};
     }
@@ -24,16 +24,17 @@ class Car extends React.Component {
 
     render() {
         return (
-            <div className="Car">
+            <>
                 <h1>Hello, {this.props.name}</h1>
                 <p>Model : {this.props.model} </p>
                 <h2>Сейчас {this.state.date.toLocaleTimeString()}.</h2>
                 <input type="text" onChange={this.props.changeName} value={this.props.model}/>
                 <button onClick={this.props.onChangeText}>Click</button>
                 {this.props.children}
-            </div>
+            </>
         );
     }
 }
 
-export default Car
+// export default Car
+export default withClass(Car,style.Car)
