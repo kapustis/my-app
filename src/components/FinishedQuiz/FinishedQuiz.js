@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../UI/Button/Button'
 import classes from './FinishedQuiz.module.scss'
 
 const FinishedQuiz = props => {
@@ -9,22 +10,22 @@ const FinishedQuiz = props => {
     return (
         <div className={classes.FinishedQuiz}>
             <ul>
-                <li>
-                    <strong>1. </strong>
-                    Вопрос
-                    <i className={'fa fa-times ' + classes.error}/>
-                </li>
-                <li>
-                    <strong>2. </strong>
-                    Вопрос
-                    <i className={'fa fa-check ' + classes.success}/>
-                </li>
+                {props.quiz.map((item, index) => {
+                    // console.log(item);
+                    const cls = ['fa', props.res[item.id] === 'success' ?  'fa-check' : 'fa-times', classes[props.res[item.id]]];
+                    return (
+                        <li key={index}>
+                            <strong>{index + 1}</strong>.&nbsp;
+                            {item.question}
+                            <i className={cls.join(' ')}/>
+                        </li>
+                    )
+                })}
             </ul>
-
             <p>Правильно {successCount} из {props.quiz.length}</p>
-
             <div>
-                <button>Повторить</button>
+                <Button onClick={props.onRetry} type="primary">Повторить</Button>
+                <Button type="success">Перейти в список тестов</Button>
             </div>
         </div>
     )

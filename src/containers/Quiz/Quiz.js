@@ -7,7 +7,7 @@ class Quiz extends Component {
     state = {
         activeQuestion: 0,
         answerState: null, // { [id]: 'success' 'error' }
-        isCompleted: null,
+        isCompleted: false,
         res: {},
         quiz: [
             {
@@ -34,10 +34,6 @@ class Quiz extends Component {
             }
         ]
     };
-
-    isQuizCompleted() {
-        return this.state.activeQuestion + 1 === this.state.quiz.length
-    }
 
     onAnswerClickHandler = answerId => {
         if (this.state.answerState) {
@@ -71,10 +67,22 @@ class Quiz extends Component {
             // alert('answer not correct');
             res[question.id] = 'error';
             this.setState({
+                // activeQuestion: this.state.activeQuestion + 1,
                 answerState: {[answerId]: 'error'},
                 res
             })
         }
+    };
+    isQuizCompleted() {
+        return this.state.activeQuestion + 1 === this.state.quiz.length
+    }
+    replayHandler = () =>{
+        this.setState({
+            activeQuestion: 0,
+            isCompleted : false,
+            res: {},
+            answerState: null
+        })
     };
 
     render() {
@@ -83,10 +91,8 @@ class Quiz extends Component {
                 <div className={classes.QuizWrapper}>
                     {
                         this.state.isCompleted ?
-                            <FinishedQuiz
-                                res={this.state.res}
-                                quiz={this.state.quiz}
-                            /> :
+                            <FinishedQuiz res={this.state.res} quiz={this.state.quiz} onRetry={this.replayHandler}/>
+                            :
                             <>
                                 <h1>Ответьте на все вопросы</h1>
                                 <ActiveQuiz
@@ -100,13 +106,11 @@ class Quiz extends Component {
                             </>
 
                     }
-
-
                 </div>
             </div>
         )
     }
-};
+}
 
 
 export default Quiz
