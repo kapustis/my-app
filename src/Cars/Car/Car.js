@@ -1,6 +1,6 @@
 import React from "react";
 import style from './Car.module.scss';
-import withClass from  '../hoc/withClass'
+import withClass from '../../hoc/withClass'
 
 class Car extends React.Component {
     constructor(props) {
@@ -28,8 +28,8 @@ class Car extends React.Component {
                 <h1>Hello, {this.props.name}</h1>
                 <p>Model : {this.props.model} </p>
                 <h2>Сейчас {this.state.date.toLocaleTimeString()}.</h2>
-                <input type="text" onChange={this.props.changeName} value={this.props.model}/>
-                <button onClick={this.props.onChangeText}>Click</button>
+                {/*<input type="text" onChange={this.props.changeName} value={this.props.model}/>*/}
+                {/*<button onClick={this.props.onChangeText}>Click</button>*/}
                 {this.props.children}
             </>
         );
