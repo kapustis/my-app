@@ -12,18 +12,7 @@ class App extends React.Component {
     }
 
     render() {
-        return (
-            // <div className="App">
-            //     <header className="App-header">
-            //         <h1>{this.state.headText}</h1>
-            //     </header>
-            //     <div className='content'>
-                    <Layout>
-                        <Quiz/>
-                    </Layout>
-                // </div>
-            // </div>
-        );
+        return (<Layout><Quiz/></Layout>);
     }
 }
 
