@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Car from './Car/Car'
-// import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 class Cars extends Component {
     constructor(props) {
@@ -15,32 +14,6 @@ class Cars extends Component {
             headText: 'Редактировать'
         };
     }
-
-    // changeHeadText = (newText) => {
-    //     this.setState({headText: newText})
-    // };
-
-    // changeName(name, index) {
-    //     const car = this.state.cars[index];
-    //     car.model = name;
-    //     const cars = [...this.state.cars];
-    //     cars[index] = car;
-    //     this.setState({cars})
-    // }
-
-    // toggleShowCars = () => {
-    //     this.setState({showCar: !this.state.showCar})
-    // };
-
-    // carItem = () => {
-    //     return this.state.cars.map((car, index) =>
-    //         <ErrorBoundary key={index}>
-    //             <Car key={car.id} name={car.name} model={car.model}>
-    //                 <p>Индекс елемента :{index} и id:{car.id}</p>
-    //             </Car>
-    //         </ErrorBoundary>
-    //     );
-    // };
 
     render() {
         return (

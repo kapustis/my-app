@@ -11,7 +11,7 @@ $tomato: #ff502f;
   }
 
   h2 {
-    color: $tomato
+    color: crimson;
   }
 
   p {
@@ -19,7 +19,7 @@ $tomato: #ff502f;
   }
 }
 .Car:hover {
-  background-color: rgba(128, 4, 127, 0.47);
+  background-color: coral;
   box-shadow: 0 5px 15px 5px rgba(128, 4, 127, 0.25);
   cursor: pointer;
 }
