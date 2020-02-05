@@ -1,9 +1,10 @@
 import React from "react";
+import {withRouter} from 'react-router-dom'
 import classes from './Car.module.scss'
 
 class Car extends React.Component {
     constructor(props) {
-        console.log(props)
+        // console.log(props);
         super(props);
         this.state = {date: new Date()};
     }
@@ -13,7 +14,7 @@ class Car extends React.Component {
     }
     componentWillUnmount() {
         clearInterval(this.timerID);
-        console.log('componentWillUnmount Car')
+        // console.log('componentWillUnmount Car')
     }
 
     tick() {
@@ -24,7 +25,7 @@ class Car extends React.Component {
 
     render() {
         return (
-            <div className={classes.Car}>
+            <div className={classes.Car} onClick={() => this.props.history.push('/cars/'+this.props.name.toLowerCase())}>
                 <h1>Hello, {this.props.name}</h1>
                 <p>Model : {this.props.model} </p>
                 <h2>Сейчас {this.state.date.toLocaleTimeString()}.</h2>
@@ -34,5 +35,5 @@ class Car extends React.Component {
     }
 }
 
-export default Car
+export default withRouter(Car)
 
