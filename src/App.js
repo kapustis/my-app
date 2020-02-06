@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.scss';
 import {BrowserRouter as Router, Switch, Route, NavLink} from 'react-router-dom'
-import Cars from "./Cars/Cars";
-import About from "./About/About";
+import Cars from "./conponents/Cars/Cars";
+import About from "./conponents/About/About";
+import CarDetail from "./conponents/Cars/CarDetail/CarDetail";
+import NoMatch from "./conponents/NoMatch/NoMatch";
 
 class App extends React.Component {
     render() {
@@ -27,7 +29,11 @@ class App extends React.Component {
                         <Route path="/about" >
                             <About/>
                         </Route>
+                        <Route path="/cars/:name" component={CarDetail}/>
                         <Route path="/cars" component={Cars}/>
+                        <Route path="*">
+                            <NoMatch />
+                        </Route>
                     </Switch>
                 </div>
             </Router>
