@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 import Button from '../UI/Button/Button'
 import classes from './FinishedQuiz.module.scss'
 
@@ -12,7 +13,7 @@ const FinishedQuiz = props => {
             <ul>
                 {props.quiz.map((item, index) => {
                     // console.log(item);
-                    const cls = ['fa', props.res[item.id] === 'success' ?  'fa-check' : 'fa-times', classes[props.res[item.id]]];
+                    const cls = ['fa', props.res[item.id] === 'success' ? 'fa-check' : 'fa-times', classes[props.res[item.id]]];
                     return (
                         <li key={index}>
                             <strong>{index + 1}</strong>.&nbsp;
@@ -25,7 +26,9 @@ const FinishedQuiz = props => {
             <p>Правильно {successCount} из {props.quiz.length}</p>
             <div>
                 <Button onClick={props.onRetry} type="primary">Повторить</Button>
-                <Button type="success">Перейти в список тестов</Button>
+                <Link to={'/'}>
+                    <Button type="success">Перейти в список тестов</Button>
+                </Link>
             </div>
         </div>
     )

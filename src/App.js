@@ -18,9 +18,9 @@ class App extends React.Component {
                     <Route path="/quiz-create">
                         <QuizCreate/>
                     </Route>
-                    <Route path="/quiz/:id">
-                        <Quiz/>
-                    </Route>
+                    <Route path="/quiz/:id" component={Quiz} />
+                    {/*<Route path="/quiz/:id" children={<Quiz/>} />*/}
+
                     <Route path="/">
                         <QuizList/>
                     </Route>
