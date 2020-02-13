@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
-import classes from './Auth.module.scss'
-import Button from '../../components/UI/Button/Button'
+import  classes from './Auth.module.scss'
+import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
-
-// import is from 'is_js'
-
 /**
  * @return {boolean}
  */
@@ -14,6 +11,7 @@ function ValidateEmail(email) {
 }
 
 class Auth extends Component {
+
     state = {
         isFormValid: false,
         formControls: {
@@ -21,7 +19,7 @@ class Auth extends Component {
                 value: '',
                 type: 'email',
                 name: 'email',
-                label: 'Email',
+                placeholder: 'Email',
                 errorMessage: 'Введите корректный email',
                 valid: false,
                 touched: false,
@@ -33,7 +31,9 @@ class Auth extends Component {
             password: {
                 value: '',
                 type: 'password',
-                label: 'Пароль',
+                // label: 'Пароль',
+                name:'pass',
+                placeholder: 'Пароль',
                 errorMessage: 'Введите корректный пароль',
                 valid: false,
                 touched: false,
@@ -44,8 +44,6 @@ class Auth extends Component {
             }
         }
     };
-
-
     loginHandler = () => {
         alert("Login click")
     };
@@ -55,7 +53,6 @@ class Auth extends Component {
     submitHandler = event => {
         event.preventDefault()
     };
-
     validateControl(value, validation) {
         if (!validation) return true;
 
@@ -71,7 +68,6 @@ class Auth extends Component {
     onChangeHandler = (event, controlName) => {
         const formControls = {...this.state.formControls};
         const control = {...formControls[controlName]};
-
         control.value = event.target.value;
         control.touched = true;
         control.valid = this.validateControl(control.value, control.validation);
@@ -95,6 +91,7 @@ class Auth extends Component {
                     key={controlName + index}
                     type={control.type}
                     name={control.name}
+                    placeholder={control.placeholder}
                     value={control.value}
                     valid={control.valid}
                     touched={control.touched}
@@ -111,13 +108,13 @@ class Auth extends Component {
         return (
             <div className={classes.Auth}>
                 <div>
-                    <h1>Авторизация</h1>
-
-                    <form onSubmit={this.submitHandler} className={classes.AuthForm}>
+                    <h2>Авторизоваться</h2>
+                    <form onSubmit={this.submitHandler}  className={classes.AuthForm}>
                         {this.renderInputs()}
-
-                        <Button onClick={this.loginHandler} disabled={!this.state.isFormValid}>Войти</Button>
-                        <Button onClick={this.registerHandler}>Зарегистрироваться</Button>
+                        {/*<Input  type="text" placeholder="Username"/>*/}
+                        {/*<input type="password" placeholder="Password" />*/}
+                        <Button onClick={this.loginHandler} disabled={!this.state.isFormValid}>Войти в систему</Button>
+                        <a href="/" onClick={this.registerHandler}><p> У вас нет аккаунта? Регистрация </p></a>
                     </form>
                 </div>
             </div>
