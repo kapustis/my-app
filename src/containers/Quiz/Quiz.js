@@ -1,43 +1,30 @@
 import React, {Component} from 'react'
 import classes from './Quiz.module.scss'
+import Loader from "../../components/UI/Loader/Loader";
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz'
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
+import axios from "axios";
 
 class Quiz extends Component {
     state = {
+        loading: true,
         activeQuestion: 0,
         answerState: null, // { [id]: 'success' 'error' }
         isCompleted: false,
         res: {},
-        quiz: [
-            {
-                id: 1,
-                question: 'Какого цвета небо?',
-                rightAnswerId: 2,
-                answers: [
-                    {id: 1, text: 'Черный'},
-                    {id: 2, text: 'Синий'},
-                    {id: 3, text: 'Красный'},
-                    {id: 4, text: 'Зеленый'}
-                ]
-            },
-            {
-                id: 2,
-                question: 'В каком году основали Санкт-Петербург?',
-                rightAnswerId: 3,
-                answers: [
-                    {text: '1700', id: 1},
-                    {text: '1702', id: 2},
-                    {text: '1703', id: 3},
-                    {text: '1803', id: 4}
-                ]
-            }
-        ]
+        quiz: []
     };
 
-    // componentDidMount() {
-    //     console.log('ID = ', this.props.match.params.id)
-    // }
+    componentDidMount = async () => {
+        console.log('ID = ', this.props.match.params.id);
+        try {
+            const response = await axios.get(`https://serverAdress/quizes/${this.props.match.params.id}.json`);
+            const quiz = response.data;
+            this.setState({quiz: quiz, loading: false})
+        } catch (errorBag) {
+           alert(errorBag)
+        }
+    };
 
     onAnswerClickHandler = answerId => {
         if (this.state.answerState) {
@@ -51,7 +38,7 @@ class Quiz extends Component {
         if (question.rightAnswerId === answerId) {
             if (!res[question.id]) res[question.id] = 'success';
 
-            this.setState({answerState: {[answerId]: 'success'},res});
+            this.setState({answerState: {[answerId]: 'success'}, res});
 
             const timeOut = window.setTimeout(() => {
                 if (this.isQuizCompleted()) {
@@ -77,13 +64,15 @@ class Quiz extends Component {
             })
         }
     };
+
     isQuizCompleted() {
         return this.state.activeQuestion + 1 === this.state.quiz.length
     }
-    replayHandler = () =>{
+
+    replayHandler = () => {
         this.setState({
             activeQuestion: 0,
-            isCompleted : false,
+            isCompleted: true,
             res: {},
             answerState: null
         })
@@ -93,22 +82,22 @@ class Quiz extends Component {
         return (
             <div className={classes.Quiz}>
                 <div className={classes.QuizWrapper}>
-                    {
-                        this.state.isCompleted ?
-                            <FinishedQuiz res={this.state.res} quiz={this.state.quiz} onRetry={this.replayHandler}/>
+                    {this.state.loading
+                        ? <Loader/>
+                        : this.state.isCompleted
+                            ? <FinishedQuiz res={this.state.res} quiz={this.state.quiz} onRetry={this.replayHandler}/>
                             :
                             <>
                                 <h1>Ответьте на все вопросы</h1>
                                 <ActiveQuiz
-                                    quizLength={this.state.quiz.length}
-                                    answerNumber={this.state.activeQuestion + 1}
                                     answers={this.state.quiz[this.state.activeQuestion].answers}
                                     question={this.state.quiz[this.state.activeQuestion].question}
                                     onAnswerClick={this.onAnswerClickHandler}
+                                    quizLength={this.state.quiz.length}
+                                    answerNumber={this.state.activeQuestion + 1}
                                     state={this.state.answerState}
                                 />
                             </>
-
                     }
                 </div>
             </div>

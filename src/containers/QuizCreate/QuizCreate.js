@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import classes from './QuizCreate.module.scss'
 import {createControl,validateForm,validate} from '../../form/formFramework';
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
@@ -60,14 +61,23 @@ class QuizCreate extends Component {
             formControls: createFormControl()
         })
     };
-    createQuizHandler = event => {
+    createQuizHandler = async event => {
         // todo next step is to save to the server
         event.preventDefault();
-        console.log('createQuizHandler');
-        console.log(this.state.quiz);
+
+        try {
+            await axios.get("link/do/server",this.state.quiz)
+            this.setState({
+                quiz: [],
+                isFormValid: false,
+                rightAnswerId: 1,
+                formControls: createFormControl()
+            })
+        }catch (errorBag) {
+            alert(errorBag)
+        }
     };
     changeHandler = (value, controlName) => {
-        // console.log(`value${value} and control name${controlName}`)
         const formControls = { ...this.state.formControls };
         const control = { ...formControls[controlName] };
 
@@ -77,10 +87,7 @@ class QuizCreate extends Component {
 
         formControls[controlName] = control;
 
-        this.setState({
-            formControls,
-            isFormValid: validateForm(formControls)
-        })
+        this.setState({formControls, isFormValid: validateForm(formControls)})
     };
 
     renderControls() {
