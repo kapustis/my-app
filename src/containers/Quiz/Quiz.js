@@ -18,7 +18,8 @@ class Quiz extends Component {
     componentDidMount = async () => {
         console.log('ID = ', this.props.match.params.id);
         try {
-            const response = await axios.get(`https://serverAdress/quizes/${this.props.match.params.id}.json`);
+            const response = await axios.get(`https://react-app-78e60.firebaseio.com/quizzes/${this.props.match.params.id}.json`);
+            console.log(response);
             const quiz = response.data;
             this.setState({quiz: quiz, loading: false})
         } catch (errorBag) {

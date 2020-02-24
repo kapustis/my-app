@@ -41,7 +41,7 @@ class QuizCreate extends Component {
         console.log('addQuestionHandler');
         const quiz = this.state.quiz.concat();
         const id = quiz.length +1;
-        const {question, option1, option2, option3, option4} = this.state.formControls
+        const {question, option1, option2, option3, option4} = this.state.formControls;
         const questionItem = {
             question: question.value,
             id: id,
@@ -66,7 +66,7 @@ class QuizCreate extends Component {
         event.preventDefault();
 
         try {
-            await axios.get("link/do/server",this.state.quiz)
+            await axios.post("https://react-app-78e60.firebaseio.com/quizzes.json",this.state.quiz);
             this.setState({
                 quiz: [],
                 isFormValid: false,

@@ -6,26 +6,26 @@ import Loader from "../../components/UI/Loader/Loader";
 
 class QuizList extends Component {
     state = {
-        quizes: [],
+        quizzes: [],
         loading: true
     };
 
     componentDidMount = async () => {
         try {
-            let quizes = [];
-            const res = await axios.get('https://serverAdress/quizes.json');
+            let quizzes = [];
+            const res = await axios.get('https://react-app-78e60.firebaseio.com/quizzes.json');
             Object.keys(res.data).forEach((key, index) => {
-                quizes.push({id: key, name: `Тест №${index + 1}`})
+                quizzes.push({id: key, name: `Тест №${index + 1}`})
             });
 
-            this.setState({quizes, loading: false})
+            this.setState({quizzes, loading: false})
         } catch (errorBag) {
             alert(errorBag)
         }
     };
 
     renderQuizzes() {
-        return this.state.quizes.map(quiz => {
+        return this.state.quizzes.map(quiz => {
             return (
                 <li key={quiz.id}>
                     <NavLink to={'/quiz/' + quiz.id}>
