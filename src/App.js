@@ -1,44 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import './App.scss';
-import {BrowserRouter as Router, Switch, Route, NavLink} from 'react-router-dom'
-import Cars from "./conponents/Cars/Cars";
-import About from "./conponents/About/About";
-import CarDetail from "./conponents/Cars/CarDetail/CarDetail";
-import NoMatch from "./conponents/NoMatch/NoMatch";
 
 class App extends React.Component {
+    // state = {
+    //     counter: 0
+    // };
+
+    updateCounter(value) {
+        // this.setState({
+        //     counter: this.state.counter + value
+        // })
+    }
+
     render() {
         return (
-            <Router>
-                <div className="App">
-                    <nav className="nav">
-                        <ul>
-                            <li>
-                                <NavLink to="/" exact>Home</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/about">About</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/cars">Cars</NavLink>
-                            </li>
-                        </ul>
-                    </nav>
-                    <Switch>
-                        <Route path="/" exact render={() => <h1>Home Page</h1>}/>
-                        <Route path="/about" >
-                            <About/>
-                        </Route>
-                        <Route path="/cars/:name" component={CarDetail}/>
-                        <Route path="/cars" component={Cars}/>
-                        <Route path="*">
-                            <NoMatch />
-                        </Route>
-                    </Switch>
+            <div className={'App'}>
+                <h1>Счетчик <strong>{this.props.counter}</strong></h1>
+                <hr/>
+                <div className="Actions">
+                    <button onClick={this.props.increment}>Добавить 1</button>
+                    <button onClick={this.props.decrement}>Добавить 1</button>
+                    <button onClick={this.props.reset}>Сброс</button>
                 </div>
-            </Router>
+            </div>
         );
     }
 }
+// const Counter = ...
 
-export default App;
+const mapStateToProps = (state /*, ownProps*/) => {
+    return {
+        counter: state.counter
+    }
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        // dispatching plain actions
+        increment: () => dispatch({ type: 'INCREMENT' }),
+        decrement: () => dispatch({ type: 'DECREMENT' }),
+        reset: () => dispatch({ type: 'RESET' })
+    }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
