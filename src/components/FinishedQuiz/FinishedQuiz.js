@@ -4,6 +4,7 @@ import Button from '../UI/Button/Button'
 import classes from './FinishedQuiz.module.scss'
 
 const FinishedQuiz = props => {
+    console.log(props)
     const successCount = Object.keys(props.res).reduce((total, key) => {
         if (props.res[key] === 'success') total++;
         return total
@@ -12,7 +13,6 @@ const FinishedQuiz = props => {
         <div className={classes.FinishedQuiz}>
             <ul>
                 {props.quiz.map((item, index) => {
-                    // console.log(item);
                     const cls = ['fa', props.res[item.id] === 'success' ? 'fa-check' : 'fa-times', classes[props.res[item.id]]];
                     return (
                         <li key={index}>

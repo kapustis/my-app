@@ -7,7 +7,7 @@ import {fetchQuizzes} from "../../store/actions/quiz";
 
 class QuizList extends Component {
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.fetchQuizzes()
     };
 
@@ -28,22 +28,24 @@ class QuizList extends Component {
             <div className={classes.QuizList}>
                 <div>
                     <h1>Список тестов</h1>
-                    {this.props.loading && this.props.quizzes.length !==0 ? <Loader/> : <ul>{this.renderQuizzes()}</ul>}
+                    {this.props.loading && this.props.quizzes.length !== 0 ? <Loader/> : <ul>{this.renderQuizzes()}</ul>}
                 </div>
             </div>
         )
     }
 }
+
 function mapStateToProps(state) {
-    return{
+    return {
         quizzes: state.quiz.quizzes,
         loading: state.quiz.loading
     }
 }
-function mapDispatchToProps(dispatch) {
-    return{
-        fetchQuizzes: () =>dispatch(fetchQuizzes() )
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchQuizzes: () => dispatch(fetchQuizzes())
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuizList)
