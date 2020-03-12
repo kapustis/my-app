@@ -1,44 +1,59 @@
 import React from 'react';
 import './App.scss';
-import {BrowserRouter as Router, Switch, Route, NavLink} from 'react-router-dom'
-import Cars from "./conponents/Cars/Cars";
-import About from "./conponents/About/About";
-import CarDetail from "./conponents/Cars/CarDetail/CarDetail";
-import NoMatch from "./conponents/NoMatch/NoMatch";
+import Layout from "./hoc/Layout/Layout";
+import {Route, Switch, Redirect} from 'react-router-dom';
+import Auth from "./containers/Auth/Auth";
+import QuizCreate from "./containers/QuizCreate/QuizCreate";
+import Quiz from "./containers/Quiz/Quiz";
+import QuizList from "./containers/QuizList/QuizList";
+import {connect} from "react-redux";
+import {autoLogin} from "./store/actions/auth";
+import Logout from "./components/Logout/Logout";
 
 class App extends React.Component {
+
+    componentDidMount() {
+        this.props.autoLogin()
+    }
+
     render() {
-        return (
-            <Router>
-                <div className="App">
-                    <nav className="nav">
-                        <ul>
-                            <li>
-                                <NavLink to="/" exact>Home</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/about">About</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/cars">Cars</NavLink>
-                            </li>
-                        </ul>
-                    </nav>
-                    <Switch>
-                        <Route path="/" exact render={() => <h1>Home Page</h1>}/>
-                        <Route path="/about" >
-                            <About/>
-                        </Route>
-                        <Route path="/cars/:name" component={CarDetail}/>
-                        <Route path="/cars" component={Cars}/>
-                        <Route path="*">
-                            <NoMatch />
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
-        );
+        let routes;
+
+        if (this.props.isAuthenticated) {
+            routes = (
+                <Switch>
+                    <Route path="/quiz-create"><QuizCreate/></Route>
+                    <Route path="/quiz/:id" component={Quiz}/>
+                    <Route path="/logout" component={Logout}/>
+                    <Route path="/" exact><QuizList/></Route>
+                    <Redirect to="/" />
+                </Switch>
+            )
+        } else {
+            routes = (
+                <Switch>
+                    <Route path="/auth"><Auth/></Route>
+                    <Route path="/quiz/:id" component={Quiz}/>
+                    <Route path="/" exact><QuizList/></Route>
+                    <Redirect to="/"/>
+                </Switch>
+            )
+        }
+
+        return (<Layout>{routes}</Layout>);
     }
 }
 
-export default App;
+function mapStateToProps(state) {
+    return {
+        isAuthenticated: !!state.auth.token
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        autoLogin: () => dispatch(autoLogin())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
