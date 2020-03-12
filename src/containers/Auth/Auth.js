@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
-import  classes from './Auth.module.scss'
+import {connect} from "react-redux";
+import classes from './Auth.module.scss'
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
+import {auth} from "../../store/actions/auth";
+
 /**
  * @return {boolean}
  */
@@ -32,7 +35,7 @@ class Auth extends Component {
                 value: '',
                 type: 'password',
                 // label: 'Пароль',
-                name:'pass',
+                name: 'pass',
                 placeholder: 'Пароль',
                 errorMessage: 'Введите корректный пароль',
                 valid: false,
@@ -45,15 +48,23 @@ class Auth extends Component {
         }
     };
     loginHandler = () => {
-        alert("Login click")
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            true
+        )
     };
     registerHandler = () => {
-        alert("Login register")
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            false
+        )
     };
     submitHandler = event => {
         event.preventDefault()
     };
-    validateControl(value, validation) {
+    validateControl = (value, validation) => {
         if (!validation) return true;
 
         let isValid = true;
@@ -63,7 +74,7 @@ class Auth extends Component {
         if (validation.minLength) isValid = value.length >= validation.minLength && isValid;
 
         return isValid
-    }
+    };
 
     onChangeHandler = (event, controlName) => {
         const formControls = {...this.state.formControls};
@@ -109,12 +120,13 @@ class Auth extends Component {
             <div className={classes.Auth}>
                 <div>
                     <h2>Авторизоваться</h2>
-                    <form onSubmit={this.submitHandler}  className={classes.AuthForm}>
+                    <form onSubmit={this.submitHandler} className={classes.AuthForm}>
                         {this.renderInputs()}
                         {/*<Input  type="text" placeholder="Username"/>*/}
                         {/*<input type="password" placeholder="Password" />*/}
                         <Button onClick={this.loginHandler} disabled={!this.state.isFormValid}>Войти в систему</Button>
-                        <a href="/" onClick={this.registerHandler}><p> У вас нет аккаунта? Регистрация </p></a>
+                        <Button onClick={this.registerHandler} disabled={!this.state.isFormValid}>Регистрация</Button>
+                        {/*<a href="/" onClick={this.registerHandler}><p> У вас нет аккаунта? Регистрация </p></a>*/}
                     </form>
                 </div>
             </div>
@@ -122,4 +134,10 @@ class Auth extends Component {
     }
 }
 
-export default Auth
+function mapDispatchToProps(dispatch) {
+    return {
+        auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Auth)

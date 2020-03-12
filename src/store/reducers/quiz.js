@@ -29,9 +29,9 @@ export default function quiz(state = initialState, action) {
         case FETCH_QUIZ_SUCCESS: {
             return {...state, loading: false, quiz: action.quiz}
         }
-        case QUIZ_SET_STATE:
-            return {...state, answerState: action.answerState, res: action.res};
-
+        case QUIZ_SET_STATE:{
+            return {...state, answerState: action.answerState, res: action.res}
+        }
         case QUIZ_COMPLETED: {
             return {...state, isCompleted: true}
         }

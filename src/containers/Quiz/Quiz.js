@@ -12,9 +12,9 @@ class Quiz extends Component {
         this.props.fetchQuiz(this.props.match.params.id);
     };
 
-    // UNSAFE_componentWillMount() {
-    //     this.props.retryQuiz()
-    // }
+    UNSAFE_componentWillMount() {
+        this.props.retryQuiz()
+    }
 
     render() {
         return (

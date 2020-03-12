@@ -1,7 +1,8 @@
 import axios from 'axios';
-/*
+
+/**
  * action types
- */
+ **/
 export const FETCH_QUIZZES_START = 'FETCH_QUIZZES_START';
 export const FETCH_QUIZZES_SUCCESS = 'FETCH_QUIZZES_SUCCESS';
 export const FETCH_QUIZZES_ERROR = 'FETCH_QUIZZES_ERROR';
@@ -40,43 +41,6 @@ export function fetchQuiz(id) {
     }
 }
 
-
-
-/*
- * action creators
- */
-
-export function fetchQuizzesStart() {
-    return {type: FETCH_QUIZZES_START}
-}
-
-export function fetchQuizzesSuccess(quizzes) {
-    return {type: FETCH_QUIZZES_SUCCESS, quizzes}
-}
-
-export function fetchQuizzesError(error) {
-    return {type: FETCH_QUIZZES_ERROR, error}
-}
-
-export function fetchQuizSuccess(quiz) {
-    return {type: FETCH_QUIZ_SUCCESS, quiz}
-}
-
-export function quizSetState(answerState, res) {
-    return {type: QUIZ_SET_STATE, answerState, res}
-}
-
-export function quizCompleted() {
-    return {type: QUIZ_COMPLETED}
-}
-
-export function quizNextQuestion(number) {
-    return {type: QUIZ_NEXT_QUESTION, number}
-}
-export function retryQuiz() {
-    return {type: QUIZ_RETRY}
-}
-
 export function isQuizCompleted(state) {
     return state.activeQuestion + 1 === state.quiz.length
 }
@@ -112,5 +76,43 @@ export function answerClick(answerId) {
             dispatch(quizSetState({[answerId]: 'error'}, res));
         }
     }
-
 }
+
+
+/**
+ * action creators
+ **/
+
+export function fetchQuizzesStart() {
+    return {type: FETCH_QUIZZES_START}
+}
+
+export function fetchQuizzesSuccess(quizzes) {
+    return {type: FETCH_QUIZZES_SUCCESS, quizzes}
+}
+
+export function fetchQuizzesError(error) {
+    return {type: FETCH_QUIZZES_ERROR, error}
+}
+
+export function fetchQuizSuccess(quiz) {
+    return {type: FETCH_QUIZ_SUCCESS, quiz}
+}
+
+export function quizSetState(answerState, res) {
+    return {type: QUIZ_SET_STATE, answerState, res}
+}
+
+export function quizCompleted() {
+    return {type: QUIZ_COMPLETED}
+}
+
+export function quizNextQuestion(number) {
+    return {type: QUIZ_NEXT_QUESTION, number}
+}
+
+export function retryQuiz() {
+    return {type: QUIZ_RETRY}
+}
+
+
