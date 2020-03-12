@@ -46,6 +46,28 @@
   }
 }
 
+.nav {
+  background-color: #051428;
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    li {
+      margin-right: 15px;
+      a{
+        color: antiquewhite;
+        text-decoration: none;
+      }
+      a.active{
+        color: tomato;
+      }
+    }
+  }
+}
+
 .content{
   width: 20em;
   margin: auto;
