@@ -11,8 +11,7 @@ import ReduxThunk from 'redux-thunk'; // no changes here 😀
 import Reducer from './store';
 
 const composeEnhancers =
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : compose;
+    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
 
 const logger = createLogger({collapsed: true, duration: true, diff: true});
 
