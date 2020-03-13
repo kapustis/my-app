@@ -2,26 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import {createStore,compose, applyMiddleware} from "redux";
+import {createStore,compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {createLogger} from 'redux-logger';
 import ReduxThunk from 'redux-thunk'; // no changes here 😀
-import Reducer from './store'
+import Reducer from './store';
 
 const composeEnhancers =
     typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-        }) : compose;
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : compose;
 
 const logger = createLogger({collapsed: true, duration: true, diff: true});
 
 const enhancer = composeEnhancers(
-    applyMiddleware(logger,ReduxThunk),
-    // other store enhancers if any
+  applyMiddleware(logger,ReduxThunk),
+  // other store enhancers if any
 );
 const store = createStore(Reducer, enhancer);
 
