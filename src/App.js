@@ -10,7 +10,7 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className="App">
+                <div className="App container">
                     <nav className="nav">
                         <ul>
                             <li>
