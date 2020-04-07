@@ -10,8 +10,8 @@ class Cars extends Component {
         { id: 2, name: 'Toyota', model: 'AE86 Apex' },
         { id: 3, name: 'BMW', model: 'M3 E30' },
       ],
-      showCar: false,
-      headText: 'Редактировать',
+      // showCar: false,
+      // headText: 'Редактировать',
     };
   }
 

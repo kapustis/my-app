@@ -8,15 +8,17 @@ import Cars from './views/Cars/Cars';
 import About from './views/About/About';
 import CarDetail from './views/Cars/CarDetail/CarDetail';
 import NoMatch from './views/NoMatch/NoMatch';
+import { Home } from './views/Home/Home';
+import { Alert } from './conponents/Alert/Alert';
 
 function App() {
   return (
-  // eslint-disable-next-line react/jsx-filename-extension
     <Router>
       <div className="App container">
         <NavBar />
+        <Alert />
         <Switch>
-          <Route path="/" exact render={() => <h1>Home Page</h1>} />
+          <Route path="/" exact component={Home} />
           <Route path="/about"><About /></Route>
           <Route path="/cars/:name" component={CarDetail} />
           <Route path="/cars" component={Cars} />
