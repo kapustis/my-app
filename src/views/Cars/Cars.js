@@ -18,7 +18,7 @@ class Cars extends Component {
   render() {
     return (
       <>
-        {this.state.cars.map((car, index) => (
+        { this.state.cars.map((car, index) => (
           <Car
             key={index}
             name={car.name}

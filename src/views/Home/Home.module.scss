@@ -1,3 +1,59 @@
-.Home{
+.Home {
   color: crimson;
+
+  .Btn {
+    border: none; /* Remove borders */
+    color: white; /* Add a text color */
+    padding: 14px 28px; /* Add some padding */
+    cursor: pointer; /* Add a pointer cursor on mouse-over */
+  }
+
+  /* Green */
+  .success {
+    background-color: #4CAF50;
+
+    &:hover {
+      background-color: #46a049;
+    }
+  }
+
+  /* Blue */
+  .info {
+    background-color: #2196F3;
+
+    &:hover {
+      background: #0b7dda;
+    }
+  }
+
+  /* Orange */
+  .warning {
+    background-color: #ff9800;
+
+    &:hover {
+      background: #e68a00;
+    }
+  }
+
+  /* Red */
+  .Danger {
+    background-color: #f44336;
+
+    &:hover {
+      background: #da190b;
+    }
+  }
+
+  /* Gray */
+  .default {
+    background-color: #e7e7e7;
+    color: black;
+
+    &:hover {
+      background: #ddd;
+    }
+  }
 }
+
+
+

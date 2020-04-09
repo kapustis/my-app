@@ -10,22 +10,25 @@ import CarDetail from './views/Cars/CarDetail/CarDetail';
 import NoMatch from './views/NoMatch/NoMatch';
 import { Home } from './views/Home/Home';
 import { Alert } from './conponents/Alert/Alert';
+import { AlertState } from './context/alert/AlertState';
 
 function App() {
   return (
-    <Router>
-      <div className="App container">
-        <NavBar />
-        <Alert />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about"><About /></Route>
-          <Route path="/cars/:name" component={CarDetail} />
-          <Route path="/cars" component={Cars} />
-          <Route path="*"><NoMatch /></Route>
-        </Switch>
-      </div>
-    </Router>
+    <AlertState>
+      <Router>
+        <div className="App container">
+          <NavBar />
+          <Alert />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/cars" exact component={Cars} />
+            <Route path="/cars/:name" component={CarDetail} />
+            <Route path="/about"><About /></Route>
+            <Route path="*"><NoMatch /></Route>
+          </Switch>
+        </div>
+      </Router>
+    </AlertState>
   );
 }
 

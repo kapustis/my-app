@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 // eslint-disable-next-line import/prefer-default-export
-export const AlertContext = createContext(undefined, undefined);
+export const AlertContext = createContext();

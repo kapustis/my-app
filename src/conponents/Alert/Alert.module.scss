@@ -1,7 +1,7 @@
 .Alert {
   padding: 20px;
   margin: 20px;
-  background-color: #f44336;
+  background-color: #282c34;
   color: white;
 
   .closeBtn {
@@ -13,9 +13,20 @@
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
-
     &:hover {
       color: black;
     }
   }
+}
+.Danger{
+  background-color: #f44336;
+}
+.Success{
+  background-color: #4CAF50;
+}
+.Info{
+  background-color: #2196F3;
+}
+.Warning{
+  background-color: #ff9800;
 }
