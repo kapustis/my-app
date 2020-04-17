@@ -7,7 +7,7 @@ export function Home() {
   const { show } = useContext(AlertContext);
 
   const onSubmit = () => {
-    show('Alert', 'Success');
+    show('Alert', 'Danger');
   };
   return (
     <div className={classes.Home}>

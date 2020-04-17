@@ -3,10 +3,11 @@
   margin: 20px;
   background-color: #282c34;
   color: white;
-
   .closeBtn {
-    margin-left: 15px;
+    background-color:transparent;
+    border: none;
     color: white;
+    margin-left: 15px;
     font-weight: bold;
     float: right;
     font-size: 22px;
