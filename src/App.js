@@ -7,6 +7,19 @@ import CarDetail from "./conponents/Cars/CarDetail/CarDetail";
 import NoMatch from "./conponents/NoMatch/NoMatch";
 
 class App extends React.Component {
+    state = {
+        pageTitle: 'Home Page'
+    }
+    changeTitleHandler = () => {
+        const oldTitle = this.state.pageTitle
+
+        const newTitle = oldTitle + ' is changed'
+
+        this.setState({
+            pageTitle: newTitle
+        })
+    }
+
     render() {
         return (
             <Router>
@@ -25,7 +38,12 @@ class App extends React.Component {
                         </ul>
                     </nav>
                     <Switch>
-                        <Route path="/" exact render={() => <h1>Home Page</h1>}/>
+                        <Route path="/" exact render={
+                            () => <>
+                                <h1>{this.state.pageTitle}</h1>
+                                <button onClick={this.changeTitleHandler}>Change title</button>
+                                </>
+                        }/>
                         <Route path="/about" >
                             <About/>
                         </Route>
